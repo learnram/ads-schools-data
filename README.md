@@ -1,6 +1,6 @@
 # ADS Schools Data
 
-Bulk downloads for the [ADS Initiative](https://adsopen.org) schools directory — a reference list of schools in India, searchable at **[adsopen.org/schools.html](https://adsopen.org/schools.html)**.
+Bulk downloads for the [ADS Initiative](https://adsopen.org) schools directory — a reference list of schools in India, searchable at **[adsopen.org/schools](https://adsopen.org/schools)**.
 
 This repository holds **data only**. Each dataset version is published as a [Release](../../releases), so every version keeps a permanent download URL.
 
