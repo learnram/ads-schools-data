@@ -7,7 +7,8 @@ Questions, corrections or missing schools: **ram@adsopen.org**
 
 | Version | Released | Rows | Summary |
 |---|---|---:|---|
-| **v8** | 2026-10-07 | 1,468,962 | Operational schools only; 314 names corrected; 385 IB/Cambridge copies identified; 2 missing schools added |
+| **v9** | 2026-10-10 | 1,471,114 | 2,149 missing schools added in Telangana and West Bengal; 3 more added by hand; 6 names corrected |
+| v8 | 2026-10-07 | 1,468,962 | Operational schools only; 314 names corrected; 385 IB/Cambridge copies identified; 2 missing schools added |
 | v2 | 2026-08-12 | 1,696,488 | v1 + 15 class-range fixes + 1,045 IB and Cambridge schools |
 | v1 | not released | 1,695,443 | The UDISE+ extract as retrieved |
 
@@ -16,13 +17,13 @@ versions that were never published, and their effects are listed under v8 below.
 
 ---
 
-## Coming next: cleaning forecast (probable, week of 7 October 2026)
+## Coming next: cleaning forecast (probable, week of 12 October 2026)
 
 This is what we expect to clean next. It is a forecast, not a promise: items may move, and anything that changes will be
 recorded under its version above.
 
-- **More missing schools added.** Schools that the pincode-by-pincode UDISE+ collection missed are being added as they are
-  reported. We are also checking how large this gap is.
+- **More missing schools, state by state.** v9 re-collected Telangana and West Bengal district by district (see below).
+  The remaining states and the organisation-filed schools follow, about one state a day.
 - **More IB/Cambridge copies.** About 80 groups of IB/Cambridge records were left out of the v8 review because the match
   was uncertain. They are being reviewed now, so more records will probably be marked `duplicate`.
 - **A review of IB/Cambridge links to same-name campuses**, e.g. "The Shri Ram School" (Gurugram), where an
@@ -32,6 +33,66 @@ recorded under its version above.
 Later, not expected this week:
 - A real state for the organisation-filed schools (KVS, NVS, IAF, Navy).
 - Class ranges for international schools that have no UDISE twin.
+
+---
+
+## v9 (2026-10-10)
+
+Files in the release:
+
+| File | What it is |
+|---|---|
+| `ads-schools-v9.csv.gz` | The dataset. Same 13 columns as v2 and v8, in the same order. |
+| `changes_since_v8.csv` | **Every row-level change since v8** (2,158 rows). Columns: `udise_code`, `change`, `column`, `before`, `after`. For each added school, `after` gives its name, district and how it was found. |
+
+Nothing was removed, and no v8 record changed apart from the 6 names below.
+
+### 1. 2,149 missing schools added in Telangana and West Bengal
+
+The original UDISE+ collection (July 2026) searched UDISE+ **pincode by pincode**, using the India Post pincode list. Three
+kinds of school were out of its reach:
+
+- schools whose UDISE+ record uses a pincode that is **not in the India Post list** (often a mistyped or retired one);
+- schools with **no pincode at all** in UDISE+ (e.g. La Martiniere for Boys, Kolkata);
+- schools **registered after the collection ran** (UDISE+ is updated continuously; many 2026-27 registrations).
+
+In October 2026 both states were collected again, first by pincode (every pincode within 5 of a listed one) and then
+**district by district**, which returns every school in the district whatever its pincode. Only **Operational** schools
+were kept, and anything already in the directory was skipped.
+
+| State | Added |
+|---|---:|
+| Telangana | 532 |
+| West Bengal | 1,617 |
+| **Total** | **2,149** |
+
+- Each new school is matched to its IGOD district in the same way as the rest of the file.
+- Names are as UDISE+ writes them, with stray spaces and commas tidied.
+- 146 of them share a name with another school in the same district, so they carry an area label, e.g.
+  "SARASWATI SHISHU MANDIR, Mayureswar" or "THE DELHI SCHOOL, Bodhan". The existing schools keep their names.
+- 1 school was left out as a second UDISE code for a school already listed: SR High School, Khammam (same address as
+  36311092402).
+
+### 2. Three schools added by hand
+
+Reported missing and checked against UDISE+:
+
+| udise_code | School | Place |
+|---|---|---|
+| 27230500196 | Khar Education Society Junior College of Commerce / Science | Mumbai. UDISE+ lists it as Closed; it is open. It was in v2 and removed in v8. |
+| IBIND-0267 | Smt. Sulochanadevi Singhania IB World School | Thane |
+| 36230202368 | Jawahar Navodaya Vidyalaya Rangareddy | Filed under Navodaya Vidyalaya Samiti, Hyderabad Region |
+
+### 3. Six names corrected
+
+| udise_code | Before | After |
+|---|---|---|
+| 09090102303 | D L F PUBLIC SCHOOL | DLF Public School |
+| 09100109115 | BAL BHARTI PUB SCH. | Bal Bharti Public School, Noida |
+| 09270912190 | ST M R JAIPURIYA SCH GOMATI NAGAR | Seth M. R. Jaipuria School, Gomti Nagar |
+| 09341401005 | SHEELING HOUSE CIVIL LINES | Sheiling House School |
+| 09452214205 | ARMY PUBLIC SCHOOL | Army Public School, New Cantt |
+| 36230202359 | DELHI PUBLIC SCHOOL, KHAJAGUDA | Delhi Public School, Hyderabad - Khajaguda |
 
 ---
 
